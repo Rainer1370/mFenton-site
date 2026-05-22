@@ -508,3 +508,69 @@ section { padding:5rem 0; }
   .info-bar-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); width:100%; }
   .info-bar-item:last-child { border-bottom:none; }
 }
+
+/* ========================================
+   LANGUAGE TOGGLE + SPANISH ELEMENTS
+   ======================================== */
+.lang-toggle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.65);
+  border: 1px solid rgba(201,149,108,0.4);
+  padding: 0.3rem 0.7rem;
+  transition: all var(--transition);
+  margin-left: 0.25rem;
+}
+.lang-toggle:hover {
+  color: var(--rosegold);
+  border-color: var(--rosegold);
+  background: rgba(201,149,108,0.08);
+}
+
+.spanish-callout {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: linear-gradient(135deg, var(--dark2) 0%, #1e1e35 100%);
+  border-left: 4px solid var(--rosegold);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  color: var(--white);
+}
+.spanish-flag { font-size: 2rem; flex-shrink: 0; margin-top: 0.1rem; }
+.spanish-callout strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--rosegold);
+  margin-bottom: 0.3rem;
+}
+.spanish-callout p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.credential-highlight {
+  background: rgba(201,149,108,0.08);
+  border-left: 3px solid var(--rosegold) !important;
+  padding-left: 0.75rem !important;
+  color: var(--dark2);
+  font-weight: 700;
+}
+.credential-highlight::before { color: var(--rosegold) !important; }
+
+/* ES page header language bar */
+.lang-bar {
+  background: var(--rosegold);
+  text-align: center;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.lang-bar a { color: var(--white); text-decoration: underline; }
