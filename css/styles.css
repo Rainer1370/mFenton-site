@@ -594,3 +594,11 @@ section { padding:5rem 0; }
 .site-footer .footer-col ul li a { font-size: 0.85rem !important; }
 .site-footer .footer-col ul li,
 .site-footer .footer-col ul li a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Force exact same size on all footer contact items including links */
+.site-footer .footer-col ul li,
+.site-footer .footer-col ul li a,
+.site-footer .footer-col ul li span {
+  font-size: 0.85rem !important;
+  color: rgba(255,255,255,0.55) !important;
+}
