@@ -574,3 +574,9 @@ section { padding:5rem 0; }
   color: var(--white);
 }
 .lang-bar a { color: var(--white); text-decoration: underline; }
+
+/* Ensure consistent font size in footer contact column */
+.footer-col ul li,
+.footer-col ul li a {
+  font-size: 0.85rem;
+}
