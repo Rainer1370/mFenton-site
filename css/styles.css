@@ -588,3 +588,9 @@ section { padding:5rem 0; }
   font-size: 0.85rem !important;
   white-space: nowrap;
 }
+
+/* Footer contact - force consistent font size */
+.site-footer .footer-col ul li { font-size: 0.85rem !important; line-height: 1.8; }
+.site-footer .footer-col ul li a { font-size: 0.85rem !important; }
+.site-footer .footer-col ul li,
+.site-footer .footer-col ul li a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
