@@ -580,3 +580,11 @@ section { padding:5rem 0; }
 .footer-col ul li a {
   font-size: 0.85rem;
 }
+
+/* Footer contact column - consistent sizing and no address wrap */
+.footer-col ul li,
+.footer-col ul li a,
+.footer-col ul li svg {
+  font-size: 0.85rem !important;
+  white-space: nowrap;
+}
