@@ -283,12 +283,13 @@ section { padding: 5rem 0; }
 .about-grid { display: grid; grid-template-columns: 380px 1fr; gap: 5rem; align-items: start; }
 .about-photo-col { position: sticky; top: 5rem; }
 .about-photo-frame { position: relative; margin-bottom: 2rem; }
-.about-photo-frame::after {
-  content: ''; position: absolute;
-  bottom: -0.85rem; right: -0.85rem;
-  width: 55%; height: 55%;
+.about-photo-frame {
   border: 2px solid var(--gold);
-  pointer-events: none; z-index: 0;
+  padding: 8px;
+  background: var(--navy2);
+}
+.about-photo-frame::after {
+  display: none;
 }
 .about-photo {
   width: 100%; display: block; position: relative; z-index: 1;
