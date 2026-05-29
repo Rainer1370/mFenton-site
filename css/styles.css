@@ -425,7 +425,7 @@ section { padding: 5rem 0; }
 /* ========================================
    FUTURE SERVICES SECTION
    ======================================== */
-.future-section { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); }
+.future-section { display: none; max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); }
 .future-label {
   font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; text-align: center;
