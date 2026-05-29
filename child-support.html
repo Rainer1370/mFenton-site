@@ -306,55 +306,7 @@
   }
   .disclaimer-box strong{color:var(--gold-light);font-weight:500}
 
-  /* ── FUTURE SERVICES SECTION ── */
-  .future-section{
-    max-width:1100px;margin:0 auto;padding:3rem 2rem;
-    border-top:1px solid var(--border);
-  }
-  .future-label{
-    font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--gold);font-weight:500;margin-bottom:.75rem;text-align:center;
-  }
-  .future-section h2{
-    font-family:'Cormorant Garamond',serif;font-size:2.2rem;
-    color:var(--white);text-align:center;margin-bottom:.6rem;font-weight:400;
-  }
-  .future-section>p{
-    color:var(--text-muted);font-size:.9rem;text-align:center;
-    max-width:580px;margin:0 auto 2.5rem;
-  }
-  .future-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-  .future-card{
-    background:var(--navy2);border:1px solid var(--border);
-    padding:1.5rem;position:relative;overflow:hidden;
-  }
-  .future-card::before{
-    content:'Coming Soon';
-    position:absolute;top:.6rem;right:-2rem;
-    background:rgba(201,169,110,.15);color:var(--gold);
-    font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
-    padding:.25rem 2.5rem;transform:rotate(35deg);
-    border:1px solid rgba(201,169,110,.2);
-  }
-  .future-icon{
-    width:40px;height:40px;background:rgba(201,169,110,.1);
-    display:flex;align-items:center;justify-content:center;margin-bottom:1rem;
-  }
-  .future-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5}
-  .future-card h4{
-    font-family:'Jost',sans-serif;font-size:.85rem;font-weight:500;
-    color:var(--white);letter-spacing:.06em;text-transform:uppercase;
-    margin-bottom:.5rem;
-  }
-  .future-card p{font-size:.8rem;color:var(--text-muted);line-height:1.6}
-  .interest-btn{
-    display:inline-block;margin-top:1rem;
-    font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--gold);border:1px solid rgba(201,169,110,.3);
-    padding:.3rem .75rem;text-decoration:none;cursor:pointer;
-    transition:all .2s;background:transparent;font-family:'Jost',sans-serif;
-  }
-  .interest-btn:hover{background:rgba(201,169,110,.1)}
+  
 
   /* ── FOOTER ── */
   footer{
@@ -384,28 +336,31 @@
     .hero{padding:3rem 1rem 2.5rem}
   }
 </style>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="https://michelefentonlaw.com" class="nav-brand">
-    <span class="firm">Michele Fenton PLLC</span>
-    <span class="tagline">Family Law</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="https://michelefentonlaw.com/index.html">Home</a></li>
-    <li><a href="https://michelefentonlaw.com/about.html">About</a></li>
-    <li><a href="https://michelefentonlaw.com/services.html">Practice Areas</a></li>
-    <li><a href="#" class="active">Child Support</a></li>
-    <li><a href="https://michelefentonlaw.com/testimonials.html">Testimonials</a></li>
-    <li><a href="https://michelefentonlaw.com/contact.html">Contact</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:1rem">
-    <span class="nav-phone"><a href="tel:5162186347">(516) 218-6347</a></span>
-    <a href="https://michelefentonlaw.com/contact.html" class="nav-cta">Free Consult</a>
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      Michele Fenton PLLC
+      <span>Family Law</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="this.setAttribute('aria-expanded',document.getElementById('main-nav').classList.toggle('open'));"><span></span><span></span><span></span></button>
+    <nav class="nav" id="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Practice Areas</a>
+      <a href="child-support.html" class="active">Child Support</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html">Contact</a>
+      <div class="nav-actions">
+        <a href="contact.html" class="button outline-gold">Free Consult</a>
+      </div>
+    </nav>
   </div>
-</nav>
+</header>
 
 <!-- HERO -->
 <section class="hero">
@@ -617,62 +572,6 @@
 </div>
 
 <!-- FUTURE SERVICES SECTION -->
-<section class="future-section">
-  <p class="future-label">Growing With Our Clients</p>
-  <h2>What's Coming to Michele Fenton PLLC</h2>
-  <p>As our firm grows, so does our commitment to the communities we serve. We are developing new programs to support families beyond the courtroom.</p>
-  <div class="future-grid">
-    <div class="future-card">
-      <div class="future-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <h4>Support Groups</h4>
-      <p>Facilitated peer support for individuals navigating divorce and co-parenting — a space to share, heal, and move forward.</p>
-      <button class="interest-btn" onclick="expressInterest('Support Groups')">Express Interest</button>
-    </div>
-    <div class="future-card">
-      <div class="future-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-      </div>
-      <h4>Law Internships</h4>
-      <p>Opportunities for pre-law and law students to gain hands-on experience in family law under Michele's direct mentorship.</p>
-      <button class="interest-btn" onclick="expressInterest('Internship Program')">Express Interest</button>
-    </div>
-    <div class="future-card">
-      <div class="future-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M8 16l4-4 4 4"/></svg>
-      </div>
-      <h4>Mentoring Program</h4>
-      <p>Connecting young women in Nassau and Suffolk Counties with legal professionals to explore careers in law and advocacy.</p>
-      <button class="interest-btn" onclick="expressInterest('Mentoring Program')">Express Interest</button>
-    </div>
-    <div class="future-card">
-      <div class="future-icon">
-        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-      </div>
-      <h4>Community Workshops</h4>
-      <p>Free public seminars on family law rights, child support, and navigating the court system for Long Island residents.</p>
-      <button class="interest-btn" onclick="expressInterest('Community Workshops')">Express Interest</button>
-    </div>
-    <div class="future-card">
-      <div class="future-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h4>Pro Bono Clinic</h4>
-      <p>Limited pro bono consultations for qualifying low-income families facing urgent family law matters on Long Island.</p>
-      <button class="interest-btn" onclick="expressInterest('Pro Bono Clinic')">Express Interest</button>
-    </div>
-    <div class="future-card">
-      <div class="future-icon">
-        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      </div>
-      <h4>Legal Resource Library</h4>
-      <p>A curated online library of guides, templates, and explainers for families navigating New York family law matters.</p>
-      <button class="interest-btn" onclick="expressInterest('Legal Resource Library')">Express Interest</button>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <p class="footer-firm">Michele Fenton PLLC</p>
