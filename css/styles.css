@@ -56,50 +56,6 @@ h3 { font-size: 1.35rem; font-weight: 400; }
 .button.outline-gold:hover { background: var(--gold); color: var(--navy); }
 
 /* ========================================
-   HEADER
-   ======================================== */
-.site-header {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--navy);
-  border-bottom: 1px solid var(--border);
-}
-.site-header .wrap {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  height: 70px;
-}
-.brand {
-  font-family: 'Jost', sans-serif;
-  font-size: 1rem; font-weight: 600;
-  letter-spacing: 0.12em; color: var(--white);
-  text-transform: uppercase; line-height: 1.2;
-  display: flex; flex-direction: column;
-  text-decoration: none; flex-shrink: 0;
-}
-.brand span {
-  display: block; font-size: 0.8rem; font-weight: 400;
-  color: var(--gold); letter-spacing: 0.05em;
-  text-transform: none; font-style: italic;
-  font-family: 'Cormorant Garamond', serif;
-}
-.nav {
-  display: flex; align-items: center; gap: 1.5rem;
-}
-.nav a {
-  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--text-muted); font-weight: 400;
-  transition: color var(--transition);
-}
-.nav a:hover { color: var(--gold); }
-.nav .button { margin-left: 0.5rem; }
-.nav-actions { display: flex; align-items: center; gap: 0.75rem; }
-.nav-toggle {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); transition: var(--transition); }
-
-/* ========================================
    HERO
    ======================================== */
 .hero {
@@ -517,4 +473,48 @@ section { padding: 5rem 0; }
 }
 @media (max-width: 540px) {
   .future-grid { grid-template-columns: 1fr; }
+}
+
+/* ========================================
+   NAV — child-support style (unified)
+   ======================================== */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+}
+.nav-brand {
+  text-decoration: none;
+  display: flex; flex-direction: column; line-height: 1.2;
+}
+.nav-brand .firm {
+  font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1rem;
+  letter-spacing: .12em; color: var(--white); text-transform: uppercase;
+}
+.nav-brand .tagline {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  color: var(--gold); font-size: .85rem; letter-spacing: .05em;
+}
+.nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--text-muted); font-size: .8rem;
+  letter-spacing: .1em; text-transform: uppercase; font-weight: 400;
+  transition: color .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta {
+  background: transparent; border: 1px solid var(--gold);
+  color: var(--gold); padding: .45rem 1.1rem; font-size: .75rem;
+  letter-spacing: .1em; text-transform: uppercase; font-family: 'Jost', sans-serif;
+  text-decoration: none; cursor: pointer; transition: all .2s; font-weight: 500;
+}
+.nav-cta:hover { background: var(--gold); color: var(--navy); }
+.nav-phone { color: var(--gold); font-size: .85rem; font-weight: 400; }
+.nav-phone a { color: inherit; text-decoration: none; }
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  nav .nav-phone { display: none; }
 }
