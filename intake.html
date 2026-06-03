@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Michele Fenton PLLC — Client Intake Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1427;--navy2:#161d35;--navy3:#1c2440;
+  --gold:#c9a96e;--gold2:#b8934e;--gold-light:#e8d5b0;
+  --border:#2a3356;--text:#1a1a2e;--muted:#6b7280;
+  --cream:#faf8f5;--white:#fff;
+}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);font-size:14px;line-height:1.6}
+@media print{
+  body{background:white;font-size:11px}
+  .no-print{display:none!important}
+  .page-break{page-break-before:always}
+  header{position:static}
+  .form-card{box-shadow:none;border:1px solid #ddd}
+}
+
+/* ── HEADER ── */
+header{background:var(--navy);border-bottom:3px solid var(--gold);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.firm-name{color:var(--white);font-weight:600;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase}
+.firm-tag{color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;margin-top:2px}
+.firm-contact{color:#9ea8c0;font-size:.75rem;text-align:right;line-height:1.6}
+.doc-badge{background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.3);color:var(--gold);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;margin-top:.5rem;display:inline-block}
+
+/* ── MAIN ── */
+main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+/* ── PROGRESS BAR ── */
+.progress{display:flex;gap:0;margin-bottom:2rem;no-print:1}
+.progress-step{flex:1;padding:.5rem .25rem;text-align:center;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid #ddd;cursor:pointer;transition:all .2s}
+.progress-step.active{color:var(--gold);border-color:var(--gold);font-weight:600}
+.progress-step.done{color:var(--navy2);border-color:var(--navy2)}
+
+/* ── SECTION CARDS ── */
+.form-section{display:none}
+.form-section.active{display:block}
+.form-card{background:var(--white);border:1px solid #e5e7eb;border-top:3px solid var(--gold);padding:2rem;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.section-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.4rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--navy);margin-bottom:1.5rem;font-weight:400}
+
+/* ── FIELD GRID ── */
+.field-grid{display:grid;gap:1rem;margin-bottom:1rem}
+.field-grid.cols-1{grid-template-columns:1fr}
+.field-grid.cols-2{grid-template-columns:1fr 1fr}
+.field-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.field-grid.cols-4{grid-template-columns:1fr 1fr 1fr 1fr}
+.field-grid.cols-2-1{grid-template-columns:2fr 1fr}
+.field-grid.cols-1-2{grid-template-columns:1fr 2fr}
+.field-grid.cols-3-1-1{grid-template-columns:3fr 1fr 1fr}
+@media(max-width:600px){
+  .field-grid.cols-2,.field-grid.cols-3,.field-grid.cols-4,
+  .field-grid.cols-2-1,.field-grid.cols-1-2,.field-grid.cols-3-1-1{grid-template-columns:1fr}
+}
+
+.field{display:flex;flex-direction:column;gap:.35rem}
+label{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  border:1px solid #d1d5db;padding:.55rem .75rem;font-family:'Jost',sans-serif;
+  font-size:.9rem;color:var(--text);background:var(--white);outline:none;
+  transition:border-color .2s,box-shadow .2s;width:100%;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.12)}
+textarea{resize:vertical;min-height:80px}
+select{cursor:pointer}
+
+.field-divider{grid-column:1/-1;height:1px;background:#f0ede8;margin:.25rem 0}
+
+/* ── CHILD BLOCK ── */
+.child-block{background:#fafafa;border:1px solid #e5e7eb;padding:1.25rem;margin-bottom:1rem}
+.child-block-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--navy2);margin-bottom:1rem}
+
+/* ── ATTORNEY NOTES ── */
+.notes-block{background:var(--navy2);padding:1.5rem;margin-bottom:1rem}
+.notes-block label{color:var(--gold-light)}
+.notes-block textarea{background:var(--navy3);border-color:var(--border);color:#e8e4dc;min-height:100px}
+.notes-block textarea:focus{border-color:var(--gold)}
+
+/* ── BUTTONS ── */
+.btn-row{display:flex;gap:1rem;justify-content:space-between;margin-top:2rem}
+.btn{font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:.75rem 2rem;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2)}
+.btn-secondary{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.btn-print{background:var(--navy);color:var(--white)}
+.btn-print:hover{background:var(--navy2)}
+
+/* ── REVIEW PAGE ── */
+.review-section{margin-bottom:2rem}
+.review-section-title{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--gold);padding:.5rem 0;border-bottom:1px solid var(--border);margin-bottom:1rem}
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.review-item{padding:.5rem 0;border-bottom:1px solid #f0ede8}
+.review-item-label{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.review-item-value{font-size:.9rem;color:var(--text);font-weight:400}
+.review-item-value:empty::after{content:"—";color:#ccc}
+
+/* ── PRINT LAYOUT ── */
+@media print{
+  .field-grid.cols-2{grid-template-columns:1fr 1fr}
+  input,select,textarea{border:none;border-bottom:1px solid #999;padding:.25rem 0;font-size:10px}
+  .btn-row,.progress{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="firm-name">Michele Fenton PLLC</div>
+    <div class="firm-tag">Divorce &amp; Family Law</div>
+  </div>
+  <div style="text-align:center">
+    <div class="doc-badge">Client Intake Sheet</div>
+  </div>
+  <div class="firm-contact">
+    Suite 181, 223 Wall Street<br>Huntington, NY 11743<br>
+    (516) 218-6347 &nbsp;|&nbsp; info@mvflaw.com
+  </div>
+</header>
+
+<main>
+
+  <!-- PROGRESS -->
+  <div class="progress no-print" id="progress">
+    <div class="progress-step active" onclick="goTo(0)">1. Client</div>
+    <div class="progress-step" onclick="goTo(1)">2. Spouse</div>
+    <div class="progress-step" onclick="goTo(2)">3. Children</div>
+    <div class="progress-step" onclick="goTo(3)">4. Custody</div>
+    <div class="progress-step" onclick="goTo(4)">5. Attorney Notes</div>
+    <div class="progress-step" onclick="goTo(5)">6. Review</div>
+  </div>
+
+  <!-- ── PAGE 1: CLIENT INFORMATION ── -->
+  <div class="form-section active" id="sec-0">
+    <div class="form-card">
+      <p class="section-label">Section 1 of 5</p>
+      <h2 class="section-title">Client Information</h2>
+
+      <div class="field-grid cols-1"><div class="field"><label>Type of Case</label><select id="case_type"><option value="">— Select —</option><option>Matrimonial / Divorce</option><option>Child Custody &amp; Parenting Time</option><option>Child Support</option><option>Spousal Maintenance / Alimony</option><option>Equitable Distribution</option><option>Order of Protection</option><option>Family Offense Proceeding</option><option>Paternity / Parentage</option><option>Post-Judgment Modification</option><option>Enforcement Proceeding</option><option>Prenuptial / Postnuptial Agreement</option><option>Mediation</option><option>Other</option></select></div></div>
+
+      <div class="field-grid cols-2" style="margin-top:1rem">
+        <div class="field"><label>Full Name</label><input type="text" id="c_fullname" placeholder="First Middle Last"/></div>
+        <div class="field"><label>Maiden Name</label><input type="text" id="c_maiden"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Date of Birth</label><input type="date" id="c_dob"/></div>
+        <div class="field"><label>Place of Birth</label><input type="text" id="c_pob"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Social Security Number</label><input type="text" id="c_ssn" placeholder="XXX-XX-XXXX" maxlength="11"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Email Address</label><input type="email" id="c_email"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Street Address</label><input type="text" id="c_address"/></div>
+      </div>
+      <div class="field-grid cols-4">
+        <div class="field"><label>City</label><input type="text" id="c_city"/></div>
+        <div class="field"><label>County</label><input type="text" id="c_county"/></div>
+        <div class="field"><label>State</label><input type="text" id="c_state" maxlength="2" placeholder="NY"/></div>
+        <div class="field"><label>Zip</label><input type="text" id="c_zip" maxlength="5"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Home Phone</label><input type="tel" id="c_homephone"/></div>
+        <div class="field"><label>Cell Phone</label><input type="tel" id="c_cell"/></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2 class="section-title" style="font-size:1.2rem">Employment &amp; Income</h2>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Employer</label><input type="text" id="c_employer"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Employer Address</label><input type="text" id="c_emp_addr"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Job Title</label><input type="text" id="c_jobtitle"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Gross Salary (monthly or annual)</label><input type="text" id="c_salary" placeholder="e.g. $75,000/yr"/></div>
+        <div class="field"><label>Other Sources of Income</label><input type="text" id="c_other_income"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Education</label><input type="text" id="c_education"/></div>
+        <div class="field"><label>Who Referred You?</label><input type="text" id="c_referral"/></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2 class="section-title" style="font-size:1.2rem">Marriage Information</h2>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Date of Marriage</label><input type="date" id="m_date"/></div>
+        <div class="field"><label>Place of Marriage</label><input type="text" id="m_place"/></div>
+      </div>
+      <div class="field-grid cols-3">
+        <div class="field"><label>Religious Ceremony</label><select id="m_religious"><option value="">—</option><option>Yes</option><option>No</option></select></div>
+        <div class="field"><label>Civil Ceremony</label><select id="m_civil"><option value="">—</option><option>Yes</option><option>No</option></select></div>
+        <div class="field"><label>Your Religious Preference</label><input type="text" id="m_religion"/></div>
+      </div>
+      <div class="field-grid cols-3">
+        <div class="field"><label>Currently Separated?</label><select id="m_separated"><option value="">—</option><option>Yes</option><option>No</option></select></div>
+        <div class="field"><label>Date of Separation</label><input type="date" id="m_sep_date"/></div>
+        <div class="field"><label>Spouse's Religious Preference</label><input type="text" id="m_sp_religion"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>How Long Have You Lived in New York?</label><input type="text" id="m_ny_years" placeholder="e.g. 15 years"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Have You or Spouse Filed for Divorce Before?</label><select id="m_prior_divorce"><option value="">—</option><option>Yes</option><option>No</option></select></div>
+        <div class="field"><label>If Yes — When and Where?</label><input type="text" id="m_prior_divorce_detail"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Does Spouse Have an Attorney?</label><select id="m_sp_atty"><option value="">—</option><option>Yes</option><option>No</option><option>Unknown</option></select></div>
+        <div class="field"><label>If Yes — Attorney's Name</label><input type="text" id="m_sp_atty_name"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Prior Marriages Ended by Death</label><input type="text" id="c_prior_death" placeholder="0"/></div>
+        <div class="field"><label>Prior Marriages Ended by Divorce / Annulment</label><input type="text" id="c_prior_divorce_ct" placeholder="0"/></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: SPOUSE ── -->
+  <div class="form-section" id="sec-1">
+    <div class="form-card">
+      <p class="section-label">Section 2 of 5</p>
+      <h2 class="section-title">Spouse's Information</h2>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Spouse's Full Name</label><input type="text" id="s_fullname"/></div>
+        <div class="field"><label>Maiden Name</label><input type="text" id="s_maiden"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Date of Birth</label><input type="date" id="s_dob"/></div>
+        <div class="field"><label>Place of Birth</label><input type="text" id="s_pob"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Social Security Number</label><input type="text" id="s_ssn" placeholder="XXX-XX-XXXX" maxlength="11"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Street Address</label><input type="text" id="s_address"/></div>
+      </div>
+      <div class="field-grid cols-4">
+        <div class="field"><label>City</label><input type="text" id="s_city"/></div>
+        <div class="field"><label>County</label><input type="text" id="s_county"/></div>
+        <div class="field"><label>State</label><input type="text" id="s_state" maxlength="2" placeholder="NY"/></div>
+        <div class="field"><label>Zip</label><input type="text" id="s_zip" maxlength="5"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Home Phone</label><input type="tel" id="s_homephone"/></div>
+        <div class="field"><label>Cell Phone</label><input type="tel" id="s_cell"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Email Address</label><input type="email" id="s_email"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Employer</label><input type="text" id="s_employer"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Employer Address</label><input type="text" id="s_emp_addr"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Job Title</label><input type="text" id="s_jobtitle"/></div>
+        <div class="field"><label>Gross Salary (monthly or annual)</label><input type="text" id="s_salary"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Education</label><input type="text" id="s_education"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Prior Marriages Ended by Death</label><input type="text" id="s_prior_death" placeholder="0"/></div>
+        <div class="field"><label>Prior Marriages Ended by Divorce / Annulment</label><input type="text" id="s_prior_divorce" placeholder="0"/></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 3: CHILDREN ── -->
+  <div class="form-section" id="sec-2">
+    <div class="form-card">
+      <p class="section-label">Section 3 of 5</p>
+      <h2 class="section-title">Children's Information</h2>
+      <div id="children-container"></div>
+      <button class="btn btn-secondary no-print" onclick="addChild()" style="margin-top:.5rem">+ Add Child</button>
+    </div>
+  </div>
+
+  <!-- ── PAGE 4: CUSTODY & HEALTH INSURANCE ── -->
+  <div class="form-section" id="sec-3">
+    <div class="form-card">
+      <p class="section-label">Section 4 of 5</p>
+      <h2 class="section-title">Custody</h2>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Who Will Have Custody?</label><input type="text" id="cust_who"/></div>
+      </div>
+      <div class="field-grid cols-1">
+        <div class="field"><label>Where and With Whom Are the Children Living Now?</label><input type="text" id="cust_living"/></div>
+      </div>
+      <div class="field-grid cols-3">
+        <div class="field"><label>Do You Pay / Receive Child Support?</label><select id="cust_support_self"><option value="">—</option><option>Pay</option><option>Receive</option><option>Neither</option></select></div>
+        <div class="field"><label>Amount ($)</label><input type="text" id="cust_support_amt"/></div>
+        <div class="field"><label>Per (week / month)</label><select id="cust_support_per"><option value="">—</option><option>Week</option><option>Month</option></select></div>
+      </div>
+      <div class="field-grid cols-3">
+        <div class="field"><label>Does Spouse Pay / Receive Child Support?</label><select id="cust_sp_support"><option value="">—</option><option>Pay</option><option>Receive</option><option>Neither</option></select></div>
+        <div class="field"><label>Amount ($)</label><input type="text" id="cust_sp_support_amt"/></div>
+        <div class="field"><label>Per (week / month)</label><select id="cust_sp_support_per"><option value="">—</option><option>Week</option><option>Month</option></select></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Children from Previous Marriage / Partner?</label><select id="cust_prior_children"><option value="">—</option><option>Yes</option><option>No</option></select></div>
+        <div class="field"><label>Who Has Custody of Those Children?</label><input type="text" id="cust_prior_custody"/></div>
+      </div>
+      <div class="field-grid cols-3">
+        <div class="field"><label>Support for Prior Children?</label><select id="cust_prior_support"><option value="">—</option><option>Pay</option><option>Receive</option><option>Neither</option></select></div>
+        <div class="field"><label>Amount ($)</label><input type="text" id="cust_prior_support_amt"/></div>
+        <div class="field"><label>Per (week / month)</label><select id="cust_prior_support_per"><option value="">—</option><option>Week</option><option>Month</option></select></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2 class="section-title" style="font-size:1.2rem">Health Insurance</h2>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Policy Name</label><input type="text" id="hi_name"/></div>
+        <div class="field"><label>Policy Number</label><input type="text" id="hi_number"/></div>
+      </div>
+      <div class="field-grid cols-2">
+        <div class="field"><label>Coverage Through a Parent's Employment?</label><select id="hi_parent"><option value="">—</option><option>Yes</option><option>No</option></select></div>
+        <div class="field"><label>If Yes — Which Parent?</label><input type="text" id="hi_which_parent"/></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 5: ATTORNEY NOTES ── -->
+  <div class="form-section" id="sec-4">
+    <div class="form-card" style="background:var(--navy2);border-top-color:var(--gold)">
+      <p class="section-label" style="color:var(--gold-light)">Section 5 of 5 — Confidential</p>
+      <h2 class="section-title" style="color:var(--white)">Attorney Notes</h2>
+      <div class="notes-block">
+        <div class="field"><label>Retainer Amount Requested</label><input type="text" id="n_retainer" style="background:var(--navy3);border:1px solid var(--border);color:#e8e4dc;padding:.55rem .75rem;width:100%;font-family:'Jost',sans-serif;font-size:.9rem;outline:none"/></div>
+      </div>
+      <div class="notes-block">
+        <div class="field"><label>Type of Legal Work Needed</label><textarea id="n_worktype"></textarea></div>
+      </div>
+      <div class="notes-block">
+        <div class="field"><label>Special Facts</label><textarea id="n_facts" style="min-height:120px"></textarea></div>
+      </div>
+      <div class="notes-block">
+        <div class="field"><label>Plan of Action</label><textarea id="n_plan" style="min-height:120px"></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 6: REVIEW ── -->
+  <div class="form-section" id="sec-5">
+    <div class="form-card">
+      <p class="section-label">Review &amp; Print</p>
+      <h2 class="section-title">Complete Intake Summary</h2>
+      <div id="review-content"></div>
+    </div>
+  </div>
+
+  <!-- NAV BUTTONS -->
+  <div class="btn-row no-print" id="nav-btns">
+    <button class="btn btn-secondary" id="btn-back" onclick="nav(-1)" style="display:none">← Back</button>
+    <div style="display:flex;gap:.75rem;margin-left:auto">
+      <button class="btn btn-primary" id="btn-next" onclick="nav(1)">Continue →</button>
+      <button class="btn btn-print" id="btn-print" onclick="window.print()" style="display:none">Print / Save PDF</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+let currentSection = 0;
+const totalSections = 6;
+let childCount = 0;
+
+// ── CHILDREN ──────────────────────────────────────────────────────────────
+function addChild() {
+  childCount++;
+  const n = childCount;
+  const container = document.getElementById('children-container');
+  const div = document.createElement('div');
+  div.className = 'child-block';
+  div.id = `child-block-${n}`;
+  div.innerHTML = `
+    <div class="child-block-title">Child ${n}
+      <button onclick="removeChild(${n})" style="float:right;background:none;border:none;cursor:pointer;color:#999;font-size:.8rem">✕ Remove</button>
+    </div>
+    <div class="field-grid cols-3-1-1" style="margin-bottom:.75rem">
+      <div class="field"><label>Full Name</label><input type="text" id="ch_name_${n}"/></div>
+      <div class="field"><label>Sex (M/F)</label><select id="ch_sex_${n}"><option value="">—</option><option>M</option><option>F</option></select></div>
+      <div class="field"><label>Date of Birth</label><input type="date" id="ch_dob_${n}"/></div>
+    </div>
+    <div class="field-grid cols-2">
+      <div class="field"><label>Social Security Number</label><input type="text" id="ch_ssn_${n}" placeholder="XXX-XX-XXXX" maxlength="11"/></div>
+      <div class="field"><label>Age</label><input type="text" id="ch_age_${n}" placeholder="Auto-calculates on print"/></div>
+    </div>`;
+  container.appendChild(div);
+
+  // Auto-calc age on DOB change
+  document.getElementById(`ch_dob_${n}`).addEventListener('change', function() {
+    const dob = new Date(this.value);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const m = today.getMonth() - dob.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+    document.getElementById(`ch_age_${n}`).value = isNaN(age) ? '' : age;
+  });
+}
+
+function removeChild(n) {
+  const el = document.getElementById(`child-block-${n}`);
+  if (el) el.remove();
+}
+
+// Initialize with 3 children
+addChild(); addChild(); addChild();
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────
+function goTo(index) {
+  document.getElementById(`sec-${currentSection}`).classList.remove('active');
+  document.querySelectorAll('.progress-step')[currentSection].classList.remove('active');
+  document.querySelectorAll('.progress-step')[currentSection].classList.add('done');
+
+  currentSection = index;
+  document.getElementById(`sec-${currentSection}`).classList.add('active');
+  document.querySelectorAll('.progress-step').forEach((s, i) => {
+    s.classList.toggle('active', i === currentSection);
+  });
+
+  document.getElementById('btn-back').style.display = currentSection > 0 ? 'block' : 'none';
+  document.getElementById('btn-next').style.display = currentSection < totalSections - 1 ? 'block' : 'none';
+  document.getElementById('btn-print').style.display = currentSection === totalSections - 1 ? 'block' : 'none';
+
+  if (currentSection === totalSections - 1) buildReview();
+  window.scrollTo(0, 0);
+}
+
+function nav(dir) {
+  const next = currentSection + dir;
+  if (next >= 0 && next < totalSections) goTo(next);
+}
+
+// ── REVIEW BUILD ─────────────────────────────────────────────────────────
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? (el.value || '') : '';
+}
+
+function buildReview() {
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  // Gather children
+  let childrenHTML = '';
+  for (let i = 1; i <= childCount; i++) {
+    const block = document.getElementById(`child-block-${i}`);
+    if (!block) continue;
+    const name = val(`ch_name_${i}`);
+    if (!name) continue;
+    childrenHTML += `<div class="review-item"><div class="review-item-label">Child ${i}</div><div class="review-item-value">${name} &nbsp;|&nbsp; ${val(`ch_sex_${i}`)} &nbsp;|&nbsp; DOB: ${val(`ch_dob_${i}`)} &nbsp;|&nbsp; Age: ${val(`ch_age_${i}`)}</div></div>
+    <div class="review-item"><div class="review-item-label">Child ${i} SSN</div><div class="review-item-value">${val(`ch_ssn_${i}`)}</div></div>`;
+  }
+
+  document.getElementById('review-content').innerHTML = `
+    <p style="color:var(--muted);font-size:.8rem;margin-bottom:1.5rem">Prepared: ${today}</p>
+
+    <div class="review-section">
+      <div class="review-section-title">Type of Case</div>
+      <div class="review-grid">
+        <div class="review-item"><div class="review-item-label">Case Type</div><div class="review-item-value">${val('case_type')}</div></div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Client Information</div>
+      <div class="review-grid">
+        <div class="review-item"><div class="review-item-label">Full Name</div><div class="review-item-value">${val('c_fullname')}</div></div>
+        <div class="review-item"><div class="review-item-label">Maiden Name</div><div class="review-item-value">${val('c_maiden')}</div></div>
+        <div class="review-item"><div class="review-item-label">Date of Birth</div><div class="review-item-value">${val('c_dob')}</div></div>
+        <div class="review-item"><div class="review-item-label">Place of Birth</div><div class="review-item-value">${val('c_pob')}</div></div>
+        <div class="review-item"><div class="review-item-label">SSN</div><div class="review-item-value">${val('c_ssn')}</div></div>
+        <div class="review-item"><div class="review-item-label">Email</div><div class="review-item-value">${val('c_email')}</div></div>
+        <div class="review-item" style="grid-column:1/-1"><div class="review-item-label">Address</div><div class="review-item-value">${val('c_address')}, ${val('c_city')}, ${val('c_county')} County, ${val('c_state')} ${val('c_zip')}</div></div>
+        <div class="review-item"><div class="review-item-label">Home Phone</div><div class="review-item-value">${val('c_homephone')}</div></div>
+        <div class="review-item"><div class="review-item-label">Cell Phone</div><div class="review-item-value">${val('c_cell')}</div></div>
+        <div class="review-item"><div class="review-item-label">Employer</div><div class="review-item-value">${val('c_employer')}</div></div>
+        <div class="review-item"><div class="review-item-label">Job Title</div><div class="review-item-value">${val('c_jobtitle')}</div></div>
+        <div class="review-item"><div class="review-item-label">Gross Salary</div><div class="review-item-value">${val('c_salary')}</div></div>
+        <div class="review-item"><div class="review-item-label">Other Income</div><div class="review-item-value">${val('c_other_income')}</div></div>
+        <div class="review-item"><div class="review-item-label">Education</div><div class="review-item-value">${val('c_education')}</div></div>
+        <div class="review-item"><div class="review-item-label">Referred By</div><div class="review-item-value">${val('c_referral')}</div></div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Marriage Information</div>
+      <div class="review-grid">
+        <div class="review-item"><div class="review-item-label">Date of Marriage</div><div class="review-item-value">${val('m_date')}</div></div>
+        <div class="review-item"><div class="review-item-label">Place of Marriage</div><div class="review-item-value">${val('m_place')}</div></div>
+        <div class="review-item"><div class="review-item-label">Currently Separated?</div><div class="review-item-value">${val('m_separated')} ${val('m_sep_date') ? '— ' + val('m_sep_date') : ''}</div></div>
+        <div class="review-item"><div class="review-item-label">Spouse Has Attorney?</div><div class="review-item-value">${val('m_sp_atty')} ${val('m_sp_atty_name') ? '— ' + val('m_sp_atty_name') : ''}</div></div>
+        <div class="review-item"><div class="review-item-label">Filed for Divorce Before?</div><div class="review-item-value">${val('m_prior_divorce')} ${val('m_prior_divorce_detail') ? '— ' + val('m_prior_divorce_detail') : ''}</div></div>
+        <div class="review-item"><div class="review-item-label">NY Residency</div><div class="review-item-value">${val('m_ny_years')}</div></div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Spouse's Information</div>
+      <div class="review-grid">
+        <div class="review-item"><div class="review-item-label">Full Name</div><div class="review-item-value">${val('s_fullname')}</div></div>
+        <div class="review-item"><div class="review-item-label">Date of Birth</div><div class="review-item-value">${val('s_dob')}</div></div>
+        <div class="review-item"><div class="review-item-label">SSN</div><div class="review-item-value">${val('s_ssn')}</div></div>
+        <div class="review-item"><div class="review-item-label">Email</div><div class="review-item-value">${val('s_email')}</div></div>
+        <div class="review-item" style="grid-column:1/-1"><div class="review-item-label">Address</div><div class="review-item-value">${val('s_address')}, ${val('s_city')}, ${val('s_county')} County, ${val('s_state')} ${val('s_zip')}</div></div>
+        <div class="review-item"><div class="review-item-label">Employer</div><div class="review-item-value">${val('s_employer')}</div></div>
+        <div class="review-item"><div class="review-item-label">Gross Salary</div><div class="review-item-value">${val('s_salary')}</div></div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Children</div>
+      <div class="review-grid">${childrenHTML || '<div class="review-item" style="grid-column:1/-1"><div class="review-item-value">No children entered</div></div>'}</div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Custody</div>
+      <div class="review-grid">
+        <div class="review-item"><div class="review-item-label">Who Has Custody?</div><div class="review-item-value">${val('cust_who')}</div></div>
+        <div class="review-item" style="grid-column:1/-1"><div class="review-item-label">Children Currently Living With</div><div class="review-item-value">${val('cust_living')}</div></div>
+        <div class="review-item"><div class="review-item-label">Client Child Support</div><div class="review-item-value">${val('cust_support_self')} $${val('cust_support_amt')} / ${val('cust_support_per')}</div></div>
+        <div class="review-item"><div class="review-item-label">Spouse Child Support</div><div class="review-item-value">${val('cust_sp_support')} $${val('cust_sp_support_amt')} / ${val('cust_sp_support_per')}</div></div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Health Insurance</div>
+      <div class="review-grid">
+        <div class="review-item"><div class="review-item-label">Policy Name</div><div class="review-item-value">${val('hi_name')}</div></div>
+        <div class="review-item"><div class="review-item-label">Policy Number</div><div class="review-item-value">${val('hi_number')}</div></div>
+        <div class="review-item"><div class="review-item-label">Through Parent Employment?</div><div class="review-item-value">${val('hi_parent')} ${val('hi_which_parent') ? '— ' + val('hi_which_parent') : ''}</div></div>
+      </div>
+    </div>
+
+    <div class="review-section" style="background:var(--navy2);padding:1.25rem;border-left:3px solid var(--gold)">
+      <div class="review-section-title" style="color:var(--gold-light)">Attorney Notes (Confidential)</div>
+      <div style="color:#9ea8c0;font-size:.85rem;line-height:1.8">
+        <p><strong style="color:var(--gold-light)">Retainer:</strong> ${val('n_retainer')}</p>
+        <p style="margin-top:.5rem"><strong style="color:var(--gold-light)">Legal Work:</strong> ${val('n_worktype')}</p>
+        <p style="margin-top:.5rem"><strong style="color:var(--gold-light)">Special Facts:</strong> ${val('n_facts')}</p>
+        <p style="margin-top:.5rem"><strong style="color:var(--gold-light)">Plan of Action:</strong> ${val('n_plan')}</p>
+      </div>
+    </div>`;
+}
+
+// SSN formatting
+['c_ssn','s_ssn'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function() {
+    let v = this.value.replace(/\D/g,'');
+    if (v.length > 3) v = v.slice(0,3)+'-'+v.slice(3);
+    if (v.length > 6) v = v.slice(0,6)+'-'+v.slice(6,10);
+    this.value = v;
+  });
+});
+</script>
+</body>
+</html>
