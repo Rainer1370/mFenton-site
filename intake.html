@@ -371,6 +371,7 @@ select{cursor:pointer}
     <div style="display:flex;gap:.75rem;margin-left:auto">
       <button class="btn btn-primary" id="btn-next" onclick="nav(1)">Continue →</button>
       <button class="btn btn-print" id="btn-print" onclick="window.print()" style="display:none">Print / Save PDF</button>
+      <button class="btn btn-primary" id="btn-submit" onclick="submitIntake()" style="display:none;background:var(--navy);border:1px solid var(--gold);color:var(--gold)">Send to Firm →</button>
     </div>
   </div>
 
@@ -438,6 +439,7 @@ function goTo(index) {
   document.getElementById('btn-back').style.display = currentSection > 0 ? 'block' : 'none';
   document.getElementById('btn-next').style.display = currentSection < totalSections - 1 ? 'block' : 'none';
   document.getElementById('btn-print').style.display = currentSection === totalSections - 1 ? 'block' : 'none';
+    document.getElementById('btn-submit').style.display = currentSection === totalSections - 1 ? 'block' : 'none';
 
   if (currentSection === totalSections - 1) buildReview();
   window.scrollTo(0, 0);
@@ -568,6 +570,118 @@ function buildReview() {
     this.value = v;
   });
 });
+
+// ── APPS SCRIPT URL — paste your deployed web app URL here ──
+const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+// ── SUBMIT TO GOOGLE DRIVE ────────────────────────────────────────────────
+async function submitIntake() {
+  const btn = document.getElementById('btn-submit');
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+  // Gather all children
+  const children = [];
+  for (let i = 1; i <= childCount; i++) {
+    const block = document.getElementById(`child-block-${i}`);
+    if (!block) continue;
+    const name = val(`ch_name_${i}`);
+    if (!name) continue;
+    children.push({
+      name, sex: val(`ch_sex_${i}`),
+      dob: val(`ch_dob_${i}`), age: val(`ch_age_${i}`),
+      ssn: val(`ch_ssn_${i}`)
+    });
+  }
+
+  const payload = {
+    form_type: 'intake',
+    // Case
+    case_type: val('case_type'),
+    // Client
+    c_fullname: val('c_fullname'), c_maiden: val('c_maiden'),
+    c_dob: val('c_dob'), c_pob: val('c_pob'), c_ssn: val('c_ssn'),
+    c_email: val('c_email'), c_address: val('c_address'),
+    c_city: val('c_city'), c_county: val('c_county'),
+    c_state: val('c_state'), c_zip: val('c_zip'),
+    c_homephone: val('c_homephone'), c_cell: val('c_cell'),
+    c_employer: val('c_employer'), c_emp_addr: val('c_emp_addr'),
+    c_jobtitle: val('c_jobtitle'), c_salary: val('c_salary'),
+    c_other_income: val('c_other_income'), c_education: val('c_education'),
+    c_referral: val('c_referral'),
+    c_prior_death: val('c_prior_death'), c_prior_divorce_ct: val('c_prior_divorce_ct'),
+    // Marriage
+    m_date: val('m_date'), m_place: val('m_place'),
+    m_religious: val('m_religious'), m_civil: val('m_civil'),
+    m_religion: val('m_religion'), m_sp_religion: val('m_sp_religion'),
+    m_separated: val('m_separated'), m_sep_date: val('m_sep_date'),
+    m_ny_years: val('m_ny_years'), m_prior_divorce: val('m_prior_divorce'),
+    m_prior_divorce_detail: val('m_prior_divorce_detail'),
+    m_sp_atty: val('m_sp_atty'), m_sp_atty_name: val('m_sp_atty_name'),
+    // Spouse
+    s_fullname: val('s_fullname'), s_maiden: val('s_maiden'),
+    s_dob: val('s_dob'), s_pob: val('s_pob'), s_ssn: val('s_ssn'),
+    s_email: val('s_email'), s_address: val('s_address'),
+    s_city: val('s_city'), s_county: val('s_county'),
+    s_state: val('s_state'), s_zip: val('s_zip'),
+    s_homephone: val('s_homephone'), s_cell: val('s_cell'),
+    s_employer: val('s_employer'), s_emp_addr: val('s_emp_addr'),
+    s_jobtitle: val('s_jobtitle'), s_salary: val('s_salary'),
+    s_education: val('s_education'),
+    s_prior_death: val('s_prior_death'), s_prior_divorce: val('s_prior_divorce'),
+    // Children
+    children,
+    // Custody
+    cust_who: val('cust_who'), cust_living: val('cust_living'),
+    cust_support_self: val('cust_support_self'), cust_support_amt: val('cust_support_amt'),
+    cust_support_per: val('cust_support_per'), cust_sp_support: val('cust_sp_support'),
+    cust_sp_support_amt: val('cust_sp_support_amt'), cust_sp_support_per: val('cust_sp_support_per'),
+    cust_prior_children: val('cust_prior_children'), cust_prior_custody: val('cust_prior_custody'),
+    cust_prior_support: val('cust_prior_support'), cust_prior_support_amt: val('cust_prior_support_amt'),
+    cust_prior_support_per: val('cust_prior_support_per'),
+    // Health Insurance
+    hi_name: val('hi_name'), hi_number: val('hi_number'),
+    hi_parent: val('hi_parent'), hi_which_parent: val('hi_which_parent'),
+    // Attorney Notes
+    n_retainer: val('n_retainer'), n_worktype: val('n_worktype'),
+    n_facts: val('n_facts'), n_plan: val('n_plan'),
+  };
+
+  try {
+    const resp = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+    const result = await resp.json();
+    if (result.status === 'ok') {
+      showConfirmation(result.doc);
+    } else {
+      throw new Error(result.message || 'Submission failed');
+    }
+  } catch(err) {
+    btn.textContent = 'Submit to Office';
+    btn.disabled = false;
+    alert('Submission error: ' + err.message + '\n\nPlease try again or contact the office directly.');
+  }
+}
+
+function showConfirmation(docUrl) {
+  document.getElementById('sec-5').innerHTML = `
+    <div class="form-card" style="text-align:center;padding:3rem">
+      <div style="font-size:3rem;margin-bottom:1rem">✓</div>
+      <p class="section-label">Submitted Successfully</p>
+      <h2 class="section-title">Thank You!</h2>
+      <p style="color:var(--muted);max-width:480px;margin:.75rem auto 1.5rem;font-size:.95rem;line-height:1.7">
+        Your intake form has been received by Michele Fenton PLLC.
+        A member of our team will be in touch within one business day.
+      </p>
+      <p style="color:var(--muted);font-size:.82rem;margin-bottom:2rem">
+        Questions? Call us at <strong>(516) 218-6347</strong> or email <strong>info@mvflaw.com</strong>
+      </p>
+      <button class="btn btn-print" onclick="window.print()">Print / Save a Copy</button>
+    </div>`;
+  document.getElementById('nav-btns').style.display = 'none';
+}
 </script>
 </body>
 </html>
