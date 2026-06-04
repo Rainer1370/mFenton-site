@@ -572,7 +572,7 @@ function buildReview() {
 });
 
 // ── APPS SCRIPT URL — paste your deployed web app URL here ──
-const APPS_SCRIPT_URL = 'https://michelefentonlaw.com/intake.html';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/PASTE_YOUR_ID_HERE/exec';
 
 // ── SUBMIT TO GOOGLE DRIVE ────────────────────────────────────────────────
 async function submitIntake() {
@@ -654,7 +654,7 @@ async function submitIntake() {
     });
     const result = await resp.json();
     if (result.status === 'ok') {
-      showConfirmation(result.doc);
+      showConfirmation();
     } else {
       throw new Error(result.message || 'Submission failed');
     }
@@ -665,7 +665,7 @@ async function submitIntake() {
   }
 }
 
-function showConfirmation(docUrl) {
+function showConfirmation() {
   document.getElementById('sec-5').innerHTML = `
     <div class="form-card" style="text-align:center;padding:3rem">
       <div style="font-size:3rem;margin-bottom:1rem">✓</div>
